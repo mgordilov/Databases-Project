@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="main_content">
+    <h1>Dashboard</h1>
+    <hr>
+    <div class="section-forms form">
+        <h2>Your profile 
+            <i class="fa-regular fa-pen-to-square editUser-btn" onclick="openEditUserMenu()"></i>
+        </h2>
+        <div class="popup-container">
+            <i class="fa-solid fa-xmark closeMenu-btn" onclick="closeEditUserMenu()" style="display: none;"></i>
+            <form action="{{ url_for('edit_account', username=user.username) }}" method="POST" id="edit_user" class="form">
+                <p class="form-title">Edit your profile</p>
+                <div class="input-container">
+                    <input type="text" name="username" id="username" placeholder="Username" value="{{ user.username }}" required>
+                </div>
+                <div class="input-container">
+                    <input type="email" name="email" id="email" placeholder="Your email" value="{{ user.email }}" required>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="first_name" id="first_name" placeholder="First name" value="{{ user.first_name }}" required>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="last_name" id="last_name" placeholder="Last name" value="{{ user.last_name }}" required>
+                </div>
+                <div class="input-container">
+                    <textarea name="personal_info" id="personal_info" placeholder="Personal info" value="{{ user.personal_info }}" required></textarea>
+                </div>
+                <input type="submit" class="submit" value="Edit">
+                <button type="button" class="cancel" onclick="closeEditUserMenu()">Cancel</button>
+            </form>
+        </div>
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Personal info:</strong> {{ user.personal_info }}</p></strong></p>
+    </div>
+    <hr>
+    <h2>Your recipes:</h2>
+    {% if recipes %}
+        <div class="recipes_grid">
+            {% for recipe in recipes %}
+                <a href="{{ url_for('recipe_page', recipe_id=recipe.id) }}">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ recipe.image }}" alt="{{ recipe.name }}">
+                        </div>
+                        <div class="category"> {{ recipe.name }} </div>
+                        <div class="heading"> {{ recipe.description }}
+                            <div class="author"> By <span class="name">{{ recipe.author.first_name }} {{ recipe.author.last_name }}</span></div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Oops:/ Seems, you don't have any recipes yet.</p>
+    {% endif %}
+    <hr>
+    <h2>Your favourites:</h2>
+    {% if favourites %}
+        <div class="recipes_grid">
+            {% for favourite in favourites %}
+                <a href="{{ url_for('recipe_page', recipe_id=favourite.id) }}">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ favourite.image }}" alt="{{ favourite.name }}">
+                        </div>
+                        <div class="category">{{ favourite.name }}</div>
+                        <div class="heading">{{ favourite.description }}
+                            <div class="author"> By <span class="name">{{ favourite.author.first_name }} {{ favourite.author.last_name }}</span></div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Oops:/ Seems, you don't have any favourites yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

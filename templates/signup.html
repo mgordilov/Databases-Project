@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="post_forms">
+    <form class="form" method="POST">
+        <p class="form-title">Open a new account</p>
+        <div class="input-container">
+            <input id="email" type="email" placeholder="Enter email" name="email" required>
+        </div>
+        <div class="input-container">
+            <input id="username" type="text" placeholder="Enter username" name="username" required>
+            <span>
+            </span>
+        </div>
+        <div class="input-container">
+            <input id="password" type="password" placeholder="Enter password" name="password" required>
+        </div>
+        <div class="input-container">
+            <input id="first_name" type="text" placeholder="First Name" name="first_name">
+        </div>
+        <div class="input-container">
+            <input id="last_name" type="text" placeholder="Last name" name="last_name">
+        </div>
+        <input type="submit" class="submit" value="Sign up">
+        <p class="signup-link">
+            Already have an account?
+            <a href="{{ url_for('login_page') }}">Log in</a>
+        </p>
+    </form>
+</div>
+{% endblock %}

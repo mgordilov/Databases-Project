@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;800;900&family=Onest:wght@100;200;300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+:root {
+    --bg: #edfbc1;
+    --links_on_hover: #d5b942;
+    --button_color: #d9d375;
+    --button_on_hover: #e3de8f;
+    --cancel_on_hover: #E5E5E5;
+    --like-btn: #AD2831;
+}
+
+* {
+    font-family: 'Onest', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: initial;
+}
+
+a:hover {
+    color: var(--links_on_hover);
+}
+
+.delete {
+    margin-left: 0.5rem;
+}
+
+.delete:hover {
+    color: red;
+}
+
+.nav_links {
+    margin-right: 2rem;
+}
+
+header,  body {
+    background-color: var(--bg);
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: max-content;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center center;
+    padding: 0.3rem 5%;
+}
+
+.dropdown_menu {
+    display: none;
+    box-shadow: none;
+}
+
+.toggle_btn {
+    font-size: 1.4rem;
+    display: none;
+}
+  
+  
+.dropdown_menu li {
+    list-style: none;
+}
+
+.login, .logout, .account {
+    font-size: larger;
+}
+
+.main_content {
+    padding: 2rem 10%;
+}
+
+.sections_bg {
+    background-size: cover;
+    background-position: center;
+    height: 67vh;
+    width: 100%;
+}
+
+.recipes_grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    place-items: center;
+}
+
+hr {
+    border: dotted var(--button_color) 6px;
+    border-bottom: none;
+    width: 30rem;
+    margin: 3rem auto;
+}
+
+footer {
+    border-top: solid 1px black;
+    padding: 0.3rem 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fa-heart {
+    color: var(--like-btn);
+}
+
+.recipe_info {
+    display: flex;
+    flex-direction: row;
+}
+
+#recipe_name {
+    width: max-content;
+}
+
+#remove_ingredient {
+    display: none;
+}
+
+.comments {
+    margin: 0.2rem 0;
+}
+
+.user-comment {
+    border: #000 solid 0.5px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+
+
+
+/******** SECTION BACKGROUNDS ********/
+.home_bg {
+    background-image: url("https://i.ibb.co/KW7zV74/home-bg.jpg");
+}
+
+.catalogue_bg {
+    background-image: url("https://i.ibb.co/dDh2NHx/catalogue.jpg");
+}
+
+.about_bg {
+    background-image: url("https://i.ibb.co/vx6mXjR/2400-240708-broccoli-and-chicken-stir-fry-3x4-186-b7f290a400134ae9910f2e67ff50d9f2.jpg");
+}
+
+
+
+
+/******** FORMS DESIGN ********/
+
+.post_forms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 2rem 0;
+}
+
+.form {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    width: 20rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    max-height: 85vh;
+    overflow: scroll;
+}
+
+
+.section-forms {
+    width: 96%;
+}
+
+.form-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+}
+
+.input-container {
+    display: flex;
+}
+
+.input-container input, .input-container textarea, .form input, .form button {
+    outline: none;
+    border: 1px solid #e5e7eb;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.input-container input, .input-container textarea {
+    background-color: #fff;
+    padding: 1rem;
+    padding-right: 3rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.input-container textarea {
+    resize: none;
+    overflow: scroll;
+}
+
+.input-container select {
+    background-color: #fff;
+    width: 100%;
+    padding: 0.5rem;
+    padding-right: 3rem;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.submit {
+    padding: 0.75rem 1.25rem;
+    background-color: var(--button_color);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: var(--button_on_hover);
+}
+
+.cancel {
+    padding: 0.75rem 1.25rem;
+    background-color: #FFFFFF;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.cancel:hover {
+    background-color: var(--cancel_on_hover);
+}
+
+.signup-link {
+    color: #6B7280;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: center;
+}
+  
+.signup-link a {
+    text-decoration: underline;
+}
+
+
+
+/******** RECIPE CARDS ********/
+
+.card {
+    width: 190px;
+    height: 260px;
+    background: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: .4em;
+    border-radius: 6px;
+}
+
+.card-image {
+    background-color: rgb(236, 236, 236);
+    width: 100%;
+    height: 130px;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.card-image:hover {
+    transform: scale(0.98);
+}
+
+.category {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    font-weight: 600;
+    color: rgb(63, 121, 230);
+    padding: 10px 7px 0;
+}
+
+.category:hover {
+    cursor: pointer;
+}
+
+.heading {
+    font-weight: 600;
+    color: rgb(88, 87, 87);
+    padding: 7px;
+    text-wrap: wrap;
+}
+
+.heading:hover {
+    cursor: pointer;
+}
+
+.author {
+    color: gray;
+    font-weight: 400;
+    font-size: 11px;
+    padding-top: 20px;
+}
+
+.name {
+    font-weight: 600;
+}
+
+.name:hover {
+    cursor: pointer;
+}
+
+
+
+/******** POPUP FORM ********/
+.popup-container.open {
+    position: relative;
+    
+}
+
+.popup-container::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    z-index: 8;
+    pointer-events: none;
+}
+
+.popup-container.open::before {
+    opacity: 1;
+    
+}
+
+.editUser-btn {
+    cursor: pointer;
+}
+
+.closeMenu-btn::before {
+    cursor: pointer;
+    position: fixed;
+    top: 5px;
+    right: 10px;
+    z-index: 9;
+    font-size: 2rem;
+    color: #FFFFFF;
+}
+
+#create_recipe, #edit_recipe, #edit_user {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    border: 1px solid black;
+}
+
+.share_recipe {
+    display: flex;
+    width: 100%;
+}
+
+.share_recipe button {
+    padding: 0.3rem;
+    margin-left: 1rem;
+    background-color: var(--button_color);
+    font-size: 0.7rem;
+    line-height: 0.5rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 20%;
+
+}
+
+
+/******** RECIPE PAGE ********/
+ .img-and-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 99%;
+    height: 20rem;
+ }
+
+ .short-info {
+    height: 18rem;
+ }
+
+ .recipe-image {
+    height: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    text-align: center;
+    overflow: hidden;
+ }
+
+
+
+
+ /*************** RESPONSIVE DESIGN ***************/
+
+@media (max-width: 1023px) {
+
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .dropdown_menu {
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        top: 6em;
+        left: 10%;
+        background-color: #fff;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+  
+    .dropdown_menu.open {
+        display: flex;
+        padding: 1rem;
+        height: 6rem;
+        gap: 1rem;
+        box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+  
+    .toggle_btn {
+        display: block;
+    }
+
+    .recipes_grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .share_recipe {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .share_recipe button {
+        width: 25%;
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 800px) {
+
+    hr {
+        width: 20rem;
+    }
+  
+    .dropdown_menu {
+      width: 86%;
+      top: 6em;
+      left: 1.5em;
+    }
+
+    .recipes_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .share_recipe {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .share_recipe p {
+        width: 100%;
+    }
+
+    .share_recipe button {
+        width: 30%;
+        height: 2rem;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .dropdown_menu {
+      width: 84%;
+      top: 6em;
+      left: 1.3em;
+    }
+
+  }

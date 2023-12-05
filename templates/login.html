@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="post_forms">
+    <form class="form" method="POST">
+        <p class="form-title">Sign in to your account</p>
+            <div class="input-container">
+                <label for="username"></label>
+                <input id="username" type="text" placeholder="Enter username" name="username" required>
+            </div>
+        <div class="input-container">
+            <label for="password"></label>
+            <input id="password" type="password" placeholder="Enter password" name="password" required>
+        </div>
+        <input type="submit" class="submit" value="Sign in">
+        <p class="signup-link">
+            No account?
+            <a href="{{ url_for('signup_page') }}">Sign up</a>
+        </p>
+    </form>
+</div>
+{% endblock %}

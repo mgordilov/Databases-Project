@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="catalogue_bg sections_bg"></div>
+<div class="main_content">
+    <h1>Recipes:</h1>
+    <hr>
+    <div class="section-forms form">
+        <h2>Make your contribution: </h2>
+        {% if current_user.is_authenticated %}
+            <div class="share_recipe">
+                <p>Psst, you can share your beloved receipt with others: </p>
+                <button class="share openMenu-btn" onclick="openMenu()">Create Recipe</button>
+            </div>
+        {% else %}
+            <p>Please <a href="{{ url_for('login_page') }}"><strong>login</strong></a> to share your recipes with others :)</p>
+        {% endif %}
+        <div class="popup-container">
+            <i class="fa-solid fa-xmark closeMenu-btn" onclick="closeMenu()" style="display: none;"></i>
+            <form action="{{url_for('create_recipe_call')}}" method="post" id="create_recipe" class="form">
+                <p class="form-title">Create a new recipe</p>
+                <div class="input-container">
+                    <input type="text" name="name" id="name" placeholder="Name" required>
+                </div>
+                <div id="ingredient_container">
+                    <div class="ingredient input-container">
+                        <input type="text" name="ingredient" id="ingredient" placeholder="Ingredient 1">
+                    </div>
+                </div>
+                <button type="button" onclick="addIngredientField()">Add Ingredient</button>
+                <button type="button" onclick="removeIngredientField()" id="remove_ingredient">Remove Ingredient</button>
+                <div class="input-container">
+                    <input type="text" name="description" id="description" placeholder="Description (max 50 characters)" maxlength="50" required>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="prep_time" id="prep_time" placeholder="Preparation time (in minutes)" required>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="cook_time" id="cook_time" placeholder="Cook time (in minutes)" required>
+                </div>
+                <div class="input-container">
+                    <textarea name="instructions" id="instructions" placeholder="Instructions" required></textarea>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="servings" id="servings" placeholder="Servings" required>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="difficulty" id="difficulty" placeholder="Difficulty (1-5)" maxlength="1" required">
+                </div>
+                <div class="input-container">
+                    <input type="text" name="cuisine"   id="cuisine" placeholder="Cuisine" required>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="image" id="image" placeholder="Image URL" required>
+                </div>
+                <input type="submit" class="submit" value="Create">
+                <button type="button" class="cancel" onclick="closeMenu()">Cancel</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+    {% if recipes|length == 0 %}
+        <div class="form section-forms">
+            <h2>Woaah :(</h2>
+            <p>Looks like we don't have any created recipes yet :(</p>
+            <p>But you can be the first :)</p>
+        </div>
+    {% else %}
+        <div class="recipes_grid">
+            {% for recipe in recipes %}
+                <a href="{{ url_for('recipe_page', recipe_id=recipe.id) }}">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ recipe.image }}" alt="{{ recipe.name }}">
+                        </div>
+                        <div class="category"> {{ recipe.name }} </div>
+                        <div class="heading"> {{ recipe.description }}
+                            <div class="author"> By <span class="name">{{ recipe.author.first_name }} {{ recipe.author.last_name }}</span></div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

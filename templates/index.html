@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="home_bg sections_bg"></div>
+    <div class="main_content">
+        <div class="form section-forms">
+            <h1>Welcome to DishDelish - Your Culinary Hub!</h1>
+            <br>
+            <p>Unlock the door to a world of culinary delight where inspiration meets community. At DishDelish, we're not just a recipe site; we're a gathering place for food enthusiasts, a haven for creativity, and a platform to connect over a shared love for good food.</p>
+        </div>
+        <hr>
+        <div class="form section-forms">
+            <h2>Why Choose DishDelish?</h2>
+            <br>
+            <ul>
+                <li>
+                    <strong>Inspiration Awaits: </strong>Dive into our diverse catalogue of recipes, meticulously curated to cater to all tastes and preferences. From tantalizing appetizers to decadent desserts, there's something for everyone.
+                </li>
+                <li>
+                    <strong>Connect with Foodies: </strong>Explore our vibrant community where you can share, learn, and connect with like-minded individuals. Our interactive features make it easy to engage with fellow foodies, ask questions, and swap culinary stories.
+                </li>
+                <li>
+                    <strong>Kitchen, Your Rules: </strong>Tailor your experience with personalized filters. Whether you're vegetarian, gluten-free, or looking for a quick weeknight meal, find recipes that match your lifestyle and preferences effortlessly.
+                </li>
+                <li>
+                    <strong>Contribute Your Culinary Magic: </strong>Be a star in our culinary galaxy by sharing your favorite recipes on our platform. Each contribution adds to the richness of our community and helps others discover the joy of cooking.
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="form section-forms">
+            <h2>Start Your Culinary Journey:</h2>
+            <br>
+            <ol>
+                <li>
+                    <a href="{{ url_for('about') }}"><strong>About Us: </strong></a>
+                    Learn more about our mission, values, and the vibrant community that makes DishDelish a unique culinary destination.
+                </li>
+                <li>
+                    <a href="{{ url_for('catalogue') }}"><strong>Browse Our Catalogue: </strong></a>
+                    Embark on a virtual journey through our extensive recipe catalogue. Whether you're seeking dinner inspiration or a show-stopping dessert, the possibilities are endless.
+                </li>
+                <li>
+                    <a href="{{ url_for('signup_page') }}"><strong>Join the Community: </strong></a>
+                    Connect with fellow food enthusiasts, share your culinary experiences, and discover new ideas. The kitchen is more fun when you're not alone.
+                </li>
+                <li>
+                    <strong>Contribute Your Recipe: </strong>
+                    Share the love! Contribute your favorite recipes and let the world taste your culinary creations.
+                </li>
+            </ol>
+        </div>
+        <hr>
+        <div class="form section-forms">
+            <p>DishDelish is more than a recipe repository; it's a celebration of the joy that cooking brings to our lives. Join us on this flavorful adventure, and let's make every meal memorable together. Happy cooking!</p>
+        </div>
+    </div>
+{% endblock %}

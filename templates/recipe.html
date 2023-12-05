@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="main_content">
+    <div class="img-and-info">
+        <div class="recipe-image">
+            <img src="{{ recipe.image }}" alt="{{ recipe.name }}">
+        </div>
+        <div class="short-info form">
+            <h2 id="recipe_name">{{ recipe.name }} 
+                {% if current_user.id == recipe.author_id %}
+                    <i class="fa-solid fa-pen-to-square" onclick="openEditMenu()"></i>
+                    <a href="{{ url_for('delete_recipe_page', recipe_id=recipe.id) }}" class="delete"><i class="fa-solid fa-trash"></i></a>
+                    <div class="popup-container">
+                        <i class="fa-solid fa-xmark closeMenu-btn" onclick="closeEditMenu()" style="display: none;"></i>
+                        <form action="{{ url_for('edit_recipe_call', recipe_id=recipe.id) }}" method="POST" id="edit_recipe" class="form">
+                            <p class="form-title">Edit your recipe</p>
+                            <div class="input-container">
+                                <input type="text" name="name" id="name" placeholder="Name" value="{{ recipe.name }}" required>
+                            </div>
+                            {% for ingredient in ingredients %}
+                                <div id="ingredient_container">
+                                    <div class="ingredient input-container">
+                                        <input type="text" name="ingredient" id="ingredient" placeholder="Ingredient 1" value="{{ ingredient.name }}">
+                                    </div>
+                                    <button type="button" onclick="addIngredientField()">Add Ingredient</button>
+                                </div>
+                            {% endfor %}
+                            <a href="#" onclick="removeIngredientField()" id="remove_ingredient">Remove Ingredient</a>
+                            <div class="input-container">
+                                <input type="text" name="description" id="description" placeholder="Description (max 50 characters)" maxlength="50" value="{{ recipe.description }}" required>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="prep_time" id="prep_time" placeholder="Preparation time (in minutes)" value="{{ recipe.prep_time }}" required>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="cook_time" id="cook_time" placeholder="Cook time (in minutes)" value="{{ recipe.cook_time }}" required>
+                            </div>
+                            <div class="input-container">
+                                <textarea name="instructions" id="instructions" placeholder="Instructions">{{ recipe.instructions }}</textarea>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="servings" id="servings" placeholder="Servings" value="{{ recipe.servings }}" required>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="difficulty" id="difficulty" placeholder="Difficulty (1-5)" maxlength="1" value="{{ recipe.difficulty }}" required">
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="cuisine"   id="cuisine" placeholder="Cuisine" value="{{ recipe.cuisine }}" required>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="image"   id="image" placeholder="Image URL" value="{{ recipe.image }}">
+                            </div>
+                            <input type="submit" class="submit" value="Edit">
+                            <button type="button" class="cancel" onclick="closeEditMenu()">Cancel</button>
+                        </form>
+                    </div>
+                {% else %}
+                    {% if recipe not in current_user.favourites %}
+                        <a href="{{ url_for('like_recipe', recipe_id=recipe.id) }}"><i class="fa-regular fa-heart"></i></a>
+                    {% else %}
+                        <a href="{{ url_for('like_recipe', recipe_id=recipe.id) }}"><i class="fa-solid fa-heart"></i></a>
+                    {% endif %}
+                {% endif %}
+            </h2>
+            <p><em>By {{ recipe.author.first_name }} {{recipe.author.last_name }}</em></p>
+            <p>{{ recipe.description }}</p>
+            <table>
+                <tr>
+                    <td>Servings: {{ recipe.servings }}</td>
+                    <td>Difficulty: {{ recipe.difficulty }}</td>
+                </tr>
+                <tr>
+                    <td>Preparation time: {{ recipe.prep_time }}</td>
+                    <td>Cuisine: {{ recipe.cuisine }}</td>
+                </tr>
+                <tr>
+                    <td>Cook time: {{ recipe.cook_time }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="ing-and-instructions form section-forms">
+        <h2>Ingredients:</h2>
+        {% for ingredient in ingredients %}
+            <ul>
+                <li>{{ ingredient.name }}</li>
+            </ul>
+        {% endfor %}
+        <h2>Instructions:</h2>
+        <p>{{ recipe.instructions }}</p>
+    </div>
+    {% if current_user.id != recipe.author_id %}
+    <hr>
+    <form action="{{ url_for('review', recipe_id=recipe.id) }}" method="POST" class="form section-forms">
+        <h2>Leave a review as {{ current_user.first_name }}:</h2>
+        <label for="rating">Rating:</label>
+        <div class="input-container">
+            <select name="rating" id="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <textarea name="review" id="review" rows="4" placeholder="Your comment"></textarea>
+        </div>
+        <input type="submit" class="submit submit-review" value="Submit">
+    </form>
+    {% endif %}
+    <hr>
+    <div class="reviews_section form section-forms">
+        <h2>Reviews:</h2>
+        {% if user_rating %}
+            {% for review in user_rating %}
+            <div class="user-comment">
+                <p class="comments"><strong>Review</strong> by <em>{{ review.user.first_name }}</em> ({{ review.rating }}<i class="fa-solid fa-star"></i>):</p>
+                <p class="comments">{{ review.review }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No reviews yet</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
